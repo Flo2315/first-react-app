@@ -1,0 +1,153 @@
+.velib-station{
+  border-radius: 5px;
+  width: 23%;
+  margin: 1%;
+  background: #ddd;
+  position: relative;
+  padding-bottom: 40px;
+}
+.velib-station-header.open{
+  color: #2ecc71;
+}
+.velib-station-header.closed{
+  color: #e74c3c;
+}
+
+.velib-station-name,
+.velib-station-address{
+  text-transform: lowercase;
+}
+
+.velib-station-name{
+  margin-bottom: 10px;
+}
+
+.velib-station-status {
+  display: inline-block;
+  font-weight: bold;
+}
+.velib-station-status.open{
+  color: green;
+}
+.velib-station-status.closed{
+  color: red;
+}
+.velib-station-name{
+  background: #ccc;
+  font-size: 18px;
+  font-weight: bold;
+  padding: 10px 5px;
+}
+
+.velib-station-address{
+  font-style: italic;
+}
+
+.velib-station-stands-container{
+  text-align: center;
+  margin: 20px 0;
+}
+.velib-station-stands,
+.velib-station-bike-stands,
+.velib-station-bike-available{
+  width: 32%;
+  display: inline-block;
+  vertical-align: top;
+}
+
+.velib-station-stands .value,
+.velib-station-stands .text,
+.velib-station-bike-stands .value,
+.velib-station-bike-stands .text,
+.velib-station-bike-available .value,
+.velib-station-bike-available .text{
+  display: block;
+}
+.velib-station-stands .value,
+.velib-station-bike-stands .value,
+.velib-station-bike-available .value{
+  font-size: 40px;
+}
+.velib-station-stands .text,
+.velib-station-bike-stands .text,
+.velib-station-bike-available .text,
+.velib-station-bonus  .text{
+  font-size: 12px;
+}
+
+.velib-station-stands{
+  color: #2980b9;
+}
+.velib-station-stands svg{
+  width: 50px;
+  fill: #2980b9;
+}
+
+.velib-station-bike-stands svg,
+.velib-station-bike-available svg{
+  width: 50px;
+}
+
+.velib-station-bonus{
+  text-align: center;
+  margin-bottom: 10px;
+  color: #9b59b6;
+}
+.velib-station-bonus svg{
+  width: 40px;
+  fill: #9b59b6;
+}
+
+
+
+.low{
+  color: #c0392b;
+}
+.low svg{
+  fill: #c0392b;
+}
+.medium{
+  color: #e67e22;
+}
+.medium svg{
+  fill: #e67e22;
+}
+.high{
+  color: #16a085;
+}
+.high svg{
+  fill: #16a085;
+}
+
+
+
+.velib-station-footer{
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+.velib-station-update{
+  border-radius: 0 0 5px 5px;
+  padding: 10px;
+  background: #2980b9;
+  color: #ecf0f1;
+}
+.velib-station-update svg,
+.velib-station-update span{
+  display: inline-block;
+  vertical-align: middle;
+  color: #fff;
+}
+
+.velib-station-update svg{
+  width: 15px;
+  height: 15px;
+  fill: #fff;
+  margin-right: 10px;
+  animation: anim-update-spin infinite 5s linear;
+}
+
+@keyframes anim-update-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}

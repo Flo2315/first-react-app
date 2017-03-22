@@ -1,0 +1,102 @@
+.page-header{
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  text-align: center;
+}
+.page-header h1{
+  padding: 10px;
+  color: #27ae60;
+  text-transform: uppercase;
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.nav-wrapper{
+  text-align: center;
+  overflow: hidden;
+}
+
+.nav-velib,
+.nav-autolib{
+  position: relative;
+  width: 50vw;
+  float: left;
+  height: 100vh;
+}
+.nav-velib a,
+.nav-autolib a{
+  display: block;
+  height: 100%;
+}
+
+.nav-velib{
+    background: url(../../images/velib.jpg) center center;
+    background-size: cover;
+}
+.nav-autolib{
+    background: url(../../images/autolib.jpg) center center;
+    background-size: cover;
+}
+
+.link-wrapper{
+  display: block;
+  position: absolute;
+  z-index: 2;
+  top: 50%;
+  left: 50%;
+  opacity: 0;
+  transform: translateX(-50%) translateY(-50%);
+  transition: opacity .5s ease;
+}
+
+.overlay{
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  background: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  transition: opacity .5s ease;
+}
+
+.nav-velib:hover .link-wrapper,
+.nav-autolib:hover .link-wrapper{
+  opacity: 1;
+}
+.nav-velib:hover .overlay,
+.nav-autolib:hover .overlay{
+  opacity: 1;
+}
+
+.title{
+  display: block;
+  font-size: 30px;
+  color: #fff;
+  text-align: center;
+  margin: 15px 0;
+}
+
+.nav-picto{
+  display: block;
+  height: 200px;
+  width: 200px;
+  background: #fff;
+  border: solid 5px #27ae60;
+  color: #fff;
+  border-radius: 50%;
+  text-align: center;
+}
+.nav-picto svg{
+  fill: #27ae60;
+}
+
+.nav-velib .nav-picto svg{
+  width: 150px;
+  padding-top: 10px;
+}
+.nav-autolib .nav-picto svg{
+  width: 100px;
+  padding-top: 40px;
+}

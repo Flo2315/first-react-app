@@ -22,6 +22,8 @@ coverage
 
 # node-waf configuration
 .lock-wscript
+yarn.lock
+
 
 # Compiled binary addons (http://nodejs.org/api/addons.html)
 build/Release
