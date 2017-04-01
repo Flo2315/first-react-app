@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Header from '../../Header';
 import ItemVelib from './ItemVelib';
-import './Velib.css';
+import './Velib.scss';
 import axios from 'axios';
 
 class Velib extends Component {

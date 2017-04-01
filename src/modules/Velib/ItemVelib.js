@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Moment from 'moment';
-import './ItemVelib.css';
+import './ItemVelib.scss';
 
 class ItemVelib extends Component {
 

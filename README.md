@@ -9,6 +9,6 @@ Application to learn and train on Reactjs
 Starting the cmd "yarn" or "yarn install"
 
 ### Open project
-cmd "yarn start"
+cmd "yarn build"
 
 Enjoy

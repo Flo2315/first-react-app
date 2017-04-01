@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
 // import Header from '../../Header';
-import './Homepage.css';
+import './Homepage.scss';
 
 class Homepage extends Component {
 
@@ -17,7 +17,7 @@ class Homepage extends Component {
         <div className="page-header">
           <h1>Transports'Lib</h1>
         </div>
-        <div className="nav-velib">
+        <div className="nav-velib" style={{backgroundImage: 'url(./src/images/velib.jpg)'}}>
           <Link to="/velib" activeClassName="active" title="Accès Velib">
             <span className="link-wrapper">
               <span className="title">Acces Velib</span>
@@ -32,7 +32,7 @@ class Homepage extends Component {
             <span className="overlay"></span>
           </Link>
         </div>
-        <div className="nav-autolib">
+        <div className="nav-autolib" style={{backgroundImage: 'url(./src/images/autolib.jpg)'}}>
           <Link to="/autolib" activeClassName="active" title="Accès Autolib">
             <span className="link-wrapper">
               <span className="title">Acces Autolib</span>
