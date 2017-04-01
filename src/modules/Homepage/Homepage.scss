@@ -30,12 +30,9 @@
   height: 100%;
 }
 
-.nav-velib{
-    background: url(../../images/velib.jpg) center center;
-    background-size: cover;
-}
+.nav-velib,
 .nav-autolib{
-    background: url(../../images/autolib.jpg) center center;
+    background-position: center center;
     background-size: cover;
 }
 

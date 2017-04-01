@@ -5,7 +5,7 @@ import Homepage from './modules/Homepage/Homepage';
 import Velib from './modules/Velib/Velib';
 import Autolib from './modules/Autolib/Autolib';
 // import App from './App';
-import './index.css';
+import './index.scss';
 
 ReactDOM.render(
   <Router history={hashHistory}>
