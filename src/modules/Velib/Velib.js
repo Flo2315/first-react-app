@@ -9,19 +9,13 @@ class Velib extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      status: 'all',
-      searchType: 'all',
+      searchType: 'bike',
       search: '',
-      bonus: 'all',
-      banking: 'all',
       formClassAffix: '',
       loader: '',
     };
 
-    this.handleChangeStatus = this.handleChangeStatus.bind(this);
-    this.handleChangeBonus = this.handleChangeBonus.bind(this);
     this.handleChangeSearch = this.handleChangeSearch.bind(this);
-    this.handleChangeBanking = this.handleChangeBanking.bind(this);
     this.handleChangeSearchType = this.handleChangeSearchType.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -35,91 +29,46 @@ class Velib extends Component {
   ajax() {
     this.showLoader();
 
-    let filterStatus = '';
-    switch (this.state.status) {
-      case 'OPEN':
-        filterStatus = '&refine.status=OPEN';
-        break;
-      case 'CLOSED':
-        filterStatus = '&refine.status=CLOSED';
-        break;
-      default:
-        filterStatus = '';
-    }
-    let filterBonus = '';
-    switch (this.state.bonus) {
-      case 'True':
-        filterBonus = '&refine.bonus=True';
-        break;
-      case 'False':
-        filterBonus = '&refine.bonus=False';
-        break;
-      default:
-        filterBonus = '';
-    }
-    let filterBanking = '';
-    switch (this.state.banking) {
-      case 'True':
-        filterBanking = '&refine.banking=True';
-        break;
-      case 'False':
-        filterBanking = '&refine.banking=False';
-        break;
-      default:
-        filterBanking = '';
-    }
     let filterSearch = '';
     if (this.state.search !== '') {
       filterSearch = `&q=${this.state.search}`;
     }
 
-    axios.get(`https://opendata.paris.fr/api/records/1.0/search/?dataset=stations-velib-disponibilites-en-temps-reel&rows=200&refine.contract_name=Paris&sort=last_update${filterSearch}${filterStatus}${filterBonus}${filterBanking}`)
-      .then(res => {
+    axios.get(`https://opendata.paris.fr/api/records/1.0/search/?dataset=stations-velib-disponibilites-en-temps-reel&rows=200&refine.contract_name=Paris&sort=last_update${filterSearch}`)
+      .then((res) => {
         const velibs = res.data.records.map(obj => obj.fields);
+        const arrayVelib = [];
 
-        // let arrayVelib = [];
-        // let filterSearchType = this.state.searchType;
-        // velibs.map(function(item){
-        //   switch(filterSearchType) {
-        //     case 'all':
-        //       if(item.available_bikes > 0 || item.available_bike_stands > 0){
-        //         arrayVelib.push(item);
-        //       }
-        //       break;
-        //     case 'bikeAvailable':
-        //       if(item.available_bikes > 1){
-        //         arrayVelib.push(item);
-        //       }
-        //       break;
-        //     case 'availableBikeStands':
-        //       if(item.available_bike_stands > 1){
-        //         arrayVelib.push(item);
-        //       }
-        //       break;
-        //     default:
-        //       arrayVelib.push(item);
-        //   }
-        // });
+        velibs.forEach((item) => {
+          switch (this.state.searchType) {
+            case 'bike':
+              if (item.available_bikes > 0) {
+                arrayVelib.push(item);
+              }
+              break;
+            case 'place':
+              if (item.available_bike_stands > 0) {
+                arrayVelib.push(item);
+              }
+              break;
+            default:
+          }
+        });
 
         this.hideLoader();
-
         this.setState({
-          velibs,
-          resultCount: velibs.length,
+          velibs: arrayVelib,
+          resultCount: arrayVelib.length,
           formClassAffix: 'affix',
         });
       });
   }
 
   showLoader() {
-    this.setState({
-      loader: 'show',
-    });
+    this.setState({ loader: 'show' });
   }
   hideLoader() {
-    this.setState({
-      loader: '',
-    });
+    this.setState({ loader: '' });
   }
 
   handleSubmit(event) {
@@ -131,12 +80,6 @@ class Velib extends Component {
   }
   handleChangeStatus(event) {
     this.setState({ status: event.target.value });
-  }
-  handleChangeBonus(event) {
-    this.setState({ bonus: event.target.value });
-  }
-  handleChangeBanking(event) {
-    this.setState({ banking: event.target.value });
   }
   handleChangeSearchType(event) {
     this.setState({ searchType: event.target.value });
@@ -170,33 +113,23 @@ class Velib extends Component {
     return (
       <form className={`velibForm ${this.state.formClassAffix}`} onSubmit={this.handleSubmit}>
         <div className="col">
-          <label htmlFor="idSearch">Je cherche</label>
-          <select onChange={this.handleChangeSearchType}>
-            <option value="all">une place ou un vélib</option>
-            <option value="bikeAvailable">un vélib</option>
-            <option value="availableBikeStands">une place pour garer mon vélib</option>
-          </select>
+          <span>Je cherche</span>
+          <div className="radio">
+            <label htmlFor="idSearchVelib">
+              <input type="radio" id="idSearchVelib" name="searchType" value="bike" checked={this.state.searchType === 'bike'} onChange={this.handleChangeSearchType} />
+              Un velib
+            </label>
+          </div>
+          <div className="radio">
+            <label htmlFor="idSearchPlace">
+              <input type="radio" id="idSearchPlace" name="searchType" value="place" checked={this.state.searchType === 'place'} onChange={this.handleChangeSearchType} />
+              Une place
+            </label>
+          </div>
         </div>
-
         <div className="col">
           <label htmlFor="idWhere">Ou ?</label>
-          <input type="text" value={this.state.search} onChange={this.handleChangeSearch} placeholder="Recherche Adresse / Code Postal / Lieu" />
-        </div>
-        <div className="col">
-          <label htmlFor="idBonus">Station avec bonus</label>
-          <select onChange={this.handleChangeBonus}>
-            <option value="all">Toutes</option>
-            <option value="True">Avec</option>
-            <option value="False">Sans</option>
-          </select>
-        </div>
-        <div className="col">
-          <label htmlFor="idBanking">Station avec carte bancaire</label>
-          <select onChange={this.handleChangeBanking}>
-            <option value="all">Toutes</option>
-            <option value="True">Avec</option>
-            <option value="False">Sans</option>
-          </select>
+          <input type="text" id="idWhere" value={this.state.search} onChange={this.handleChangeSearch} placeholder="Recherche Adresse / Code Postal / Lieu" />
         </div>
         <input type="submit" value="Rechercher" />
       </form>

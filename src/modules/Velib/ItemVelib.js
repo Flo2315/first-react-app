@@ -4,7 +4,7 @@ import './ItemVelib.scss';
 
 class ItemVelib extends Component {
 
-  checkBikeAvailable(bikeAvailable) {
+  static checkBikeAvailable(bikeAvailable) {
     let bikeMany = '';
     if (bikeAvailable === 0) {
       bikeMany = 'low';
@@ -16,7 +16,7 @@ class ItemVelib extends Component {
     return bikeMany;
   }
 
-  checkAvailableBikeStands(availableBikeStands) {
+  static checkAvailableBikeStands(availableBikeStands) {
     let bikeStandsMany = '';
     if (availableBikeStands === 0) {
       bikeStandsMany = 'low';
@@ -29,7 +29,6 @@ class ItemVelib extends Component {
   }
 
   render() {
-    // console.log(Moment.locale());
     const details = this.props.details;
     return (
       <div className="velib-station ">
@@ -52,7 +51,7 @@ class ItemVelib extends Component {
               <span className="text">Nombre de places totals</span>
             </div>
 
-            <div className={`velib-station-bike-stands ${this.checkAvailableBikeStands(details.available_bike_stands)}`}>
+            <div className={`velib-station-bike-stands ${ItemVelib.checkAvailableBikeStands(details.available_bike_stands)}`}>
               <div className="picto">
                 <svg x="0px" y="0px" viewBox="0 0 50.4 63">
                   <path d="M41.552,20.571c-1.348,0-2.621,0.311-3.764,0.851l-1.786-2.707c-0.003-0.005-0.011-0.008-0.014-0.013l1.896-3.78   c0.164-0.326,0.146-0.713-0.045-1.023c-0.191-0.309-0.529-0.499-0.894-0.499h-4.719c-0.58,0-1.052,0.471-1.052,1.052   c0,0.581,0.472,1.052,1.052,1.052h3.017l-0.973,1.93H23.394c-0.052-0.064-0.104-0.129-0.167-0.178l1.12-2.363   c0.154-0.325,0.131-0.708-0.062-1.012c-0.192-0.305-0.528-0.49-0.888-0.49h-5.661c-0.581,0-1.052,0.47-1.052,1.052   c0,0.581,0.471,1.052,1.052,1.052h4l-2.67,5.634c-0.894-0.309-1.849-0.482-2.845-0.482c-0.915,0-1.796,0.144-2.625,0.408   c-1.112-1.271-2.728-2.091-4.544-2.091H2.104v-2.795c0-0.582-0.47-1.052-1.052-1.052C0.471,15.116,0,15.586,0,16.168v21.115   c0,0.581,0.471,1.052,1.052,1.052c0.582,0,1.052-0.471,1.052-1.052v-6.19h5.541c0.772,4.029,4.323,7.086,8.577,7.086   c4.85,0,8.798-3.917,8.798-8.731c0-3.108-1.623-5.839-4.062-7.404l1.228-2.587c0.007,0.003,0.017,0.003,0.025,0.006l6.296,10.093   c0.192,0.307,0.529,0.494,0.892,0.494h3.393c0.379,4.504,4.161,8.057,8.762,8.057c4.816,0,8.737-3.948,8.737-8.799   C50.289,24.491,46.368,20.571,41.552,20.571z M12.691,25.028c0,1.84-1.381,3.352-3.156,3.59c0.245-2.012,1.329-3.764,2.919-4.844   C12.599,24.168,12.691,24.586,12.691,25.028z M2.104,21.39h6.948c0.85,0,1.622,0.305,2.243,0.796   c-2.098,1.448-3.536,3.792-3.771,6.481H2.104V21.39z M23.054,29.447c0,3.734-3.066,6.77-6.833,6.77   c-3.185,0-5.846-2.217-6.563-5.185c3.056-0.31,5.458-2.866,5.458-6.004c0-0.785-0.161-1.53-0.434-2.219   c0.496-0.117,1.008-0.194,1.539-0.194c0.695,0,1.353,0.134,1.985,0.329l-2.8,5.908c-0.25,0.525-0.025,1.151,0.499,1.4   c0.145,0.069,0.298,0.102,0.45,0.102c0.393,0,0.771-0.223,0.949-0.601l2.802-5.914C21.883,25.074,23.054,27.124,23.054,29.447z    M36.002,22.536c-1.646,1.332-2.787,3.241-3.132,5.41h-1.504l3.537-7.073L36.002,22.536z M37.107,24.21l2.465,3.736h-4.715   C35.166,26.46,35.986,25.169,37.107,24.21z M24.737,19.538h8.483l-3.774,7.55L24.737,19.538z M41.552,36.135   c-3.512,0-6.381-2.673-6.757-6.085h6.73c0.387,0,0.742-0.212,0.925-0.554c0.184-0.34,0.164-0.753-0.047-1.076l-3.523-5.34   c0.822-0.346,1.725-0.54,2.672-0.54c3.732,0,6.772,3.036,6.772,6.768C48.324,33.07,45.284,36.135,41.552,36.135z" />
@@ -62,7 +61,7 @@ class ItemVelib extends Component {
               <span className="text">Nombre de places libre</span>
             </div>
 
-            <div className={`velib-station-bike-available ${this.checkBikeAvailable(details.available_bikes)}`}>
+            <div className={`velib-station-bike-available ${ItemVelib.checkBikeAvailable(details.available_bikes)}`}>
               <div className="picto">
                 <svg x="0px" y="0px" viewBox="0 0 64 80">
                   <g>
@@ -105,5 +104,13 @@ class ItemVelib extends Component {
     );
   }
 }
+
+ItemVelib.defaultProps = {
+  details: '',
+};
+
+ItemVelib.propTypes = {
+  details: React.PropTypes.shape({}),
+};
 
 export default ItemVelib;

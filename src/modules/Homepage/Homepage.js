@@ -12,12 +12,11 @@ class Homepage extends Component {
   render() {
     return (
       <div className="AppHome">
-        {/* <Header /> */}
         <div className="page-header">
           <h1>TransportsLib</h1>
         </div>
         <div className="nav-velib" style={{ backgroundImage: 'url(./src/images/velib.jpg)' }}>
-          <Link to="/velib" activeClassName="active" title="Accès Velib">
+          <Link to="/velib" title="Accès Velib">
             <span className="link-wrapper">
               <span className="title">Acces Velib</span>
               <span className="nav-picto">
@@ -32,7 +31,7 @@ class Homepage extends Component {
           </Link>
         </div>
         <div className="nav-autolib" style={{ backgroundImage: 'url(./src/images/autolib.jpg)' }} >
-          <Link to="/autolib" activeClassName="active" title="Accès Autolib">
+          <Link to="/autolib" title="Accès Autolib">
             <span className="link-wrapper">
               <span className="title">Acces Autolib</span>
               <span className="nav-picto">
