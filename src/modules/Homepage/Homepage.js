@@ -28,7 +28,7 @@ class Homepage extends Component {
                 </svg>
               </span>
             </span>
-            <span className="overlay">plop</span>
+            <span className="overlay">&nbsp;</span>
           </Link>
         </div>
         <div className="nav-autolib" style={{ backgroundImage: 'url(./src/images/autolib.jpg)' }} >
@@ -43,9 +43,7 @@ class Homepage extends Component {
                 </svg>
               </span>
             </span>
-            <span className="overlay">
-              plop
-            </span>
+            <span className="overlay">&nbsp;</span>
           </Link>
         </div>
       </div>
