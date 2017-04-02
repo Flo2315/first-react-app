@@ -100,13 +100,13 @@ class Velib extends Component {
   }
 
   renderNumberStation() {
-    if (this.state.resultCount !== undefined) {
-      return (
-        <div className="nb-station">
-          Nombre de résultat(s) { this.state.resultCount }
-        </div>
-      );
-    }
+    return (
+      <div>
+        {this.state.resultCount !== undefined &&
+          <div className="nb-station">Nombre de résultat(s) { this.state.resultCount }</div>
+        }
+      </div>
+    );
   }
 
   renderFormSearch() {
