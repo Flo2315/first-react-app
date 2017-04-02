@@ -1,21 +1,21 @@
 import React, { Component } from 'react';
-import Header from '../../Header';
+import axios from 'axios';
+import Header from '../Header/Header';
 import ItemVelib from './ItemVelib';
 import './Velib.scss';
-import axios from 'axios';
 
 class Velib extends Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      'status': 'all',
-      'searchType': 'all',
-      'search': '',
-      'bonus': 'all',
-      'banking': 'all',
-      'formClassAffix': '',
-      'loader': ''
+      status: 'all',
+      searchType: 'all',
+      search: '',
+      bonus: 'all',
+      banking: 'all',
+      formClassAffix: '',
+      loader: '',
     };
 
     this.handleChangeStatus = this.handleChangeStatus.bind(this);
@@ -32,48 +32,45 @@ class Velib extends Component {
   componentDidMount() {
   }
 
-  componentWillUpdate(nextProps, nextState) {
-  }
-
-  ajax(){
+  ajax() {
     this.showLoader();
 
-    let filterStatus = "";
-    switch(this.state.status) {
+    let filterStatus = '';
+    switch (this.state.status) {
       case 'OPEN':
-          filterStatus = "&refine.status=OPEN"
-          break;
+        filterStatus = '&refine.status=OPEN';
+        break;
       case 'CLOSED':
-          filterStatus = "&refine.status=CLOSED"
-          break;
+        filterStatus = '&refine.status=CLOSED';
+        break;
       default:
-          filterStatus = ""
+        filterStatus = '';
     }
-    let filterBonus = "";
-    switch(this.state.bonus) {
+    let filterBonus = '';
+    switch (this.state.bonus) {
       case 'True':
-          filterBonus = "&refine.bonus=True"
-          break;
+        filterBonus = '&refine.bonus=True';
+        break;
       case 'False':
-          filterBonus = "&refine.bonus=False"
-          break;
+        filterBonus = '&refine.bonus=False';
+        break;
       default:
-          filterBonus = ""
+        filterBonus = '';
     }
-    let filterBanking = "";
-    switch(this.state.banking) {
+    let filterBanking = '';
+    switch (this.state.banking) {
       case 'True':
-          filterBanking = "&refine.banking=True"
-          break;
+        filterBanking = '&refine.banking=True';
+        break;
       case 'False':
-          filterBanking = "&refine.banking=False"
-          break;
+        filterBanking = '&refine.banking=False';
+        break;
       default:
-          filterBanking = ""
+        filterBanking = '';
     }
-    let filterSearch = "";
-    if(this.state.search !== ""){
-      filterSearch = "&q="+this.state.search;
+    let filterSearch = '';
+    if (this.state.search !== '') {
+      filterSearch = `&q=${this.state.search}`;
     }
 
     axios.get(`https://opendata.paris.fr/api/records/1.0/search/?dataset=stations-velib-disponibilites-en-temps-reel&rows=200&refine.contract_name=Paris&sort=last_update${filterSearch}${filterStatus}${filterBonus}${filterBanking}`)
@@ -107,60 +104,59 @@ class Velib extends Component {
         this.hideLoader();
 
         this.setState({
-          'velibs': velibs,
-          'resultCount': velibs.length,
-          'formClassAffix': 'affix'
-         });
+          velibs,
+          resultCount: velibs.length,
+          formClassAffix: 'affix',
+        });
       });
   }
 
-  showLoader(){
+  showLoader() {
     this.setState({
-      'loader': 'show'
-     });
+      loader: 'show',
+    });
   }
-  hideLoader(){
+  hideLoader() {
     this.setState({
-      'loader': ''
-     });
+      loader: '',
+    });
   }
-
 
   handleSubmit(event) {
     event.preventDefault();
     this.ajax();
   }
   handleChangeSearch(event) {
-    this.setState({search: event.target.value});
+    this.setState({ search: event.target.value });
   }
   handleChangeStatus(event) {
-    this.setState({status: event.target.value});
+    this.setState({ status: event.target.value });
   }
   handleChangeBonus(event) {
-    this.setState({bonus: event.target.value});
+    this.setState({ bonus: event.target.value });
   }
   handleChangeBanking(event) {
-    this.setState({banking: event.target.value});
+    this.setState({ banking: event.target.value });
   }
   handleChangeSearchType(event) {
-    this.setState({searchType: event.target.value});
+    this.setState({ searchType: event.target.value });
   }
 
-  renderLoader(){
+  renderLoader() {
     return (
-      <div className={"loader "+this.state.loader}>
+      <div className={`loader ${this.state.loader}`}>
         <div className="spinner">
-          <div className="rect1"></div>
-          <div className="rect2"></div>
-          <div className="rect3"></div>
-          <div className="rect4"></div>
-          <div className="rect5"></div>
+          <div className="rect1">&nbsp;</div>
+          <div className="rect2">&nbsp;</div>
+          <div className="rect3">&nbsp;</div>
+          <div className="rect4">&nbsp;</div>
+          <div className="rect5">&nbsp;</div>
         </div>
       </div>
     );
   }
 
-  renderNumberStation(){
+  renderNumberStation() {
     if (this.state.resultCount !== undefined) {
       return (
         <div className="nb-station">
@@ -170,11 +166,11 @@ class Velib extends Component {
     }
   }
 
-  renderFormSearch(){
+  renderFormSearch() {
     return (
-      <form className={"velibForm "+this.state.formClassAffix} onSubmit={this.handleSubmit}>
+      <form className={`velibForm ${this.state.formClassAffix}`} onSubmit={this.handleSubmit}>
         <div className="col">
-          <label>Je cherche</label>
+          <label htmlFor="idSearch">Je cherche</label>
           <select onChange={this.handleChangeSearchType}>
             <option value="all">une place ou un vélib</option>
             <option value="bikeAvailable">un vélib</option>
@@ -183,11 +179,11 @@ class Velib extends Component {
         </div>
 
         <div className="col">
-          <label>Ou ?</label>
-            <input type="text" value={this.state.search} onChange={this.handleChangeSearch} placeholder="Recherche Adresse / Code Postal / Lieu" />
+          <label htmlFor="idWhere">Ou ?</label>
+          <input type="text" value={this.state.search} onChange={this.handleChangeSearch} placeholder="Recherche Adresse / Code Postal / Lieu" />
         </div>
         <div className="col">
-          <label>Station avec bonus</label>
+          <label htmlFor="idBonus">Station avec bonus</label>
           <select onChange={this.handleChangeBonus}>
             <option value="all">Toutes</option>
             <option value="True">Avec</option>
@@ -195,7 +191,7 @@ class Velib extends Component {
           </select>
         </div>
         <div className="col">
-          <label>Station avec carte bancaire</label>
+          <label htmlFor="idBanking">Station avec carte bancaire</label>
           <select onChange={this.handleChangeBanking}>
             <option value="all">Toutes</option>
             <option value="True">Avec</option>
