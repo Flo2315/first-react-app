@@ -1,99 +1,113 @@
-.page-header{
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 2;
-  text-align: center;
-}
-.page-header h1{
-  padding: 10px;
-  color: #27ae60;
-  text-transform: uppercase;
-  background: rgba(0, 0, 0, 0.6);
-}
-
-.nav-wrapper{
-  text-align: center;
-  overflow: hidden;
-}
+@import "../../varGlobal";
 
 .nav-velib,
 .nav-autolib{
-  position: relative;
-  width: 50vw;
-  float: left;
-  height: 100vh;
+	width: 50vw;
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 100%;
+	margin: 0 auto;
+	display: flex;
+	align-items: center;
+	cursor: pointer;
+	a{
+		display: block;
+		margin: 0 auto;
+		position: relative;
+	}
+	.link-wrapper{
+		text-align: center;
+	}
+	.title{
+		color: black;
+		font-size: 4rem;
+		font-weight: $bold;
+		text-transform: uppercase;
+		color: $primaryColor;
+	}
+	@extend %animNav;
 }
-.nav-velib a,
-.nav-autolib a{
-  display: block;
-  height: 100%;
-}
-
-.nav-velib,
 .nav-autolib{
-    background-position: center center;
-    background-size: cover;
+	right: 0;
+	left: auto;
+	overflow: hidden;
 }
 
-.link-wrapper{
-  display: block;
-  position: absolute;
-  z-index: 2;
-  top: 50%;
-  left: 50%;
-  opacity: 0;
-  transform: translateX(-50%) translateY(-50%);
-  transition: opacity .5s ease;
+%animNav{
+	a{
+		.title{
+			position: relative;
+			z-index: 2;
+			color: $primaryColor;
+		    cursor: pointer;
+			transition: all .5s cubic-bezier(0.75, 0, 0.125, 1);
+		}
+		.button_bg {
+		    position: absolute;
+			left: 50%;
+			right: 0;
+			top: 50%;
+			margin: 0 auto;
+		    outline: 90px solid transparent;
+		    filter: url(#filter-goo-4);
+		    padding: 0;
+		    transform: translateY(-50%) translateX(-50%);
+		    background: none;
+		    z-index: -2;
+		}
+		.blob{
+		    position: absolute;
+		    top: 0;
+		    left: 0;
+		    right: 0;
+		    bottom: 0;
+		    margin: auto;
+		    width: 1px;
+		    height: 1px;
+		    border-radius: 50%;
+		    opacity: 0.5;
+		    background: red;
+		    z-index: -1;
+		    pointer-events: none;
+		    transition: all 0.1s ease-out;
+		    &:first-child{
+		    	opacity: .9;
+		    }
+		}
+	}
+    &:hover{
+		.title{
+			position: relative;
+			z-index: 2;
+			color: $white;
+		}
+		.button_bg{
+			width: 45vh;
+			height: 45vh;
+			.blob{
+				width: 100%;
+				height: 100%;
+			}
+		}
+	}
 }
 
-.overlay{
-  position: absolute;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 1;
-  background: rgba(0, 0, 0, 0.5);
-  opacity: 0;
-  transition: opacity .5s ease;
-}
-
-.nav-velib:hover .link-wrapper,
-.nav-autolib:hover .link-wrapper{
-  opacity: 1;
-}
-.nav-velib:hover .overlay,
-.nav-autolib:hover .overlay{
-  opacity: 1;
-}
-
-.title{
-  display: block;
-  font-size: 30px;
-  color: #fff;
-  text-align: center;
-  margin: 15px 0;
-}
-
-.nav-picto{
-  display: block;
-  height: 200px;
-  width: 200px;
-  background: #fff;
-  border: solid 5px #27ae60;
-  color: #fff;
-  border-radius: 50%;
-  text-align: center;
-}
-.nav-picto svg{
-  fill: #27ae60;
-}
-
-.nav-velib .nav-picto svg{
-  width: 150px;
-  padding-top: 10px;
-}
-.nav-autolib .nav-picto svg{
-  width: 100px;
-  padding-top: 40px;
+.body_animate{
+	transition: all .5s cubic-bezier(0.75, 0, 0.125, 1);
+	.nav{
+		width: 100%;
+		&:before{
+			width: 100%;
+		}
+		.button_bg{
+			width: 100vh;
+			height: 100vh;
+		}
+		.blob{
+			width: 100%;
+			height: 100%;
+			opacity: 1;
+		}
+	}
 }

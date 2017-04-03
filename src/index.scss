@@ -1,9 +1,45 @@
-body {
-  margin: 0;
-  padding: 0;
-  font-family: sans-serif;
+@import "varGlobal";
+
+// global
+
+html{
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    display: flex;
+    align-content: center;
+    align-items: center;
+    font-size: 1vw;
+    position: relative;
+    &:before,
+    &:after{
+        content: '';
+        position: fixed;
+        transform: translateY(-50%);
+        top: 50%;
+        height: 50%;
+        width: 5px;
+        background-color: $primaryColor;
+    }
+    &:before{
+        left: 0;
+    }
+    &:after{
+        right: 0;
+    }
 }
+
+body{
+	margin: 0;
+	padding: 0;
+	font-family: $primaryFont;
+}
+
 
 *{
   box-sizing: border-box;
+}
+
+a{
+	text-decoration: none;
 }
