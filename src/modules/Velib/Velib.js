@@ -123,16 +123,12 @@ class Velib extends Component {
       <form className={`velibForm ${this.state.formClassAffix}`} onSubmit={this.handleSubmit}>
         <div className="col">
           <div className="radio">
-            <label htmlFor="idSearchVelib">
-              <input type="radio" id="idSearchVelib" name="searchType" value="bike" checked={this.state.searchType === 'bike'} onChange={this.handleChangeSearchType} />
-              Un velib
-            </label>
-          </div>
+            <input type="radio" id="idSearchVelib" name="searchType" value="bike" checked={this.state.searchType === 'bike'} onChange={this.handleChangeSearchType} />
+            <label htmlFor="idSearchVelib"><span>Un velib</span></label>
+             </div>
           <div className="radio">
-            <label htmlFor="idSearchPlace">
-              <input type="radio" id="idSearchPlace" name="searchType" value="place" checked={this.state.searchType === 'place'} onChange={this.handleChangeSearchType} />
-              Une place
-            </label>
+            <input type="radio" id="idSearchPlace" name="searchType" value="place" checked={this.state.searchType === 'place'} onChange={this.handleChangeSearchType} />
+            <label htmlFor="idSearchPlace"><span>Une place</span></label>
           </div>
         </div>
         <div className="col">

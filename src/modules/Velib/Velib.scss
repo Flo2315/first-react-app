@@ -15,12 +15,53 @@
     align-content: center;
   }
   .velibForm{
-    display: flex;
-    align-content: center;
-    align-items: center;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    transform: translateY(-50%);
     text-align: center;
-    width: 100%;
-    flex-direction: column;
+    .radio{
+        width: 50vw;
+        position: relative;
+        input{
+            opacity: 0;
+        }
+        label{
+            &:before{
+                content: '';
+                display: block;
+                width: 10vh;
+                height: 10vh;
+                position: absolute;
+                left: 0;
+                right: 0;
+                top: 50%;
+                margin: 0 auto;
+                outline: 90px solid transparent;
+                filter: url(#filter-goo-4);
+                padding: 0;
+                transform: translateY(-50%);
+                background: red;
+                border-radius: 50%;
+                z-index: -2;
+                transition: all .5s cubic-bezier(0.75, 0, 0.125, 1);
+            }
+            &:hover:before{
+                width: 45vh;
+                height: 45vh;
+            }
+            span{
+                font-weight: $bold;
+                font-size: 3rem;
+            }
+        }
+        input:checked+label:before{
+            width: 45vh;
+            height: 45vh;
+        }
+    }
   }
 }
 
@@ -65,7 +106,8 @@
   display: flex;
   flex-flow: row wrap;
   justify-content: space-around;
-  height: 100vh;
+  height: 90vh;
+  margin-top: 10vh;
   overflow-y: scroll;
 }
 
