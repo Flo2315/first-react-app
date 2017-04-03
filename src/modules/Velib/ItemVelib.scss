@@ -21,9 +21,18 @@
   transform: translateY(-50%);
   border-radius: 50%;
   text-align: center;
-  div{
-    font-size: 1rem;
-  }
+  padding: 0 10%;
+}
+
+.velib-station-name{
+  font-size: 0.9rem;
+  font-weight: $bold;
+}
+.velib-station-address,
+.velib-station-bonus,
+.velib-station-update{
+  font-size: .7rem;
+  font-weight: $regular;
 }
 
 @keyframes anim-update-spin {
@@ -56,12 +65,13 @@ svg {
 }
 
 .max_point{
-  stroke: red;
+  stroke: tomato;
 }
 
 $width: 285/100;
 
 .green{
-  stroke: green;
-  stroke-dasharray: $width 285; /* length of arc, circumference of circle */
+  stroke: #32CD32;
+  stroke-dasharray: $width*20 285; /* length of arc, circumference of circle */
+    transition: all .5s cubic-bezier(0.75, 0, 0.125, 1);
 }

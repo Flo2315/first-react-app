@@ -1,14 +1,71 @@
+@import "../../varGlobal";
+
 .container-velib{
   height: 100vh;
-  position: relative;
   width: 100vw;
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  align-content: center;
+  .col{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    align-content: center;
+  }
+  .velibForm{
+    display: flex;
+    align-content: center;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    flex-direction: column;
+  }
+}
+
+.velibForm.affix,
+.nb-station{
+    position: fixed;
+    width: 100%;
+    left: 0;
+    right: 0;
+    top: 0;
+}
+
+.btn_search{
+    background-color: $primaryColor;
+    max-width: 15vw;
+    width: 100%;
+    margin: 1vw auto;
+    line-height: 3;
+    border: 2px solid $primaryColor;
+    transition: all .5s cubic-bezier(0.75, 0, 0.125, 1);
+    cursor: pointer;
+    outline: none;
+    &:focus{
+        outline: none;
+    }
+    span{
+        color: $white;
+        text-transform: uppercase;
+        font-size: 1rem;
+        font-family: $primaryFont;
+        font-weight: $bold;
+    }
+    &:hover{
+        background: $white;
+        span{
+            color: $primaryColor;
+        }
+    }
 }
 
 .velib-station-list{
   display: flex;
   flex-flow: row wrap;
   justify-content: space-around;
-  height: 90vh;
+  height: 100vh;
   overflow-y: scroll;
 }
 
@@ -21,10 +78,10 @@
   position: absolute;
   top: 0;
   left: 0;
-  background: rgba(26, 188, 156, 0.5);
+  background: rgba(255, 255, 255, 0.8);
   width: 100vw;
   height: 100vh;
-  transition: opacity .5s ease;
+  transition: all .5s ease;
 }
 
 .loader.show{
@@ -45,7 +102,7 @@
 }
 
 .spinner > div {
-  background-color: #ffffff;
+  background-color: $primaryColor;
   height: 100%;
   width: 7px;
   margin: 0 3px 0 0;

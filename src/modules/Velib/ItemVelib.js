@@ -38,7 +38,7 @@ class ItemVelib extends Component {
           </svg>
           <div className="velib-station-content">
             <div className="velib-station-name">
-              {details.name} / <span className={`velib-station-header ${(details.status === 'OPEN' ? 'open' : 'closed')}`}>{(details.status === 'OPEN') ? 'ouverte' : 'fermé'}</span>
+              {details.name}
             </div>
             <div className="velib-station-address">
               {details.address}

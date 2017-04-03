@@ -57,14 +57,13 @@ class Velib extends Component {
 
       //I get the value of data-point
       var numberOfPoint = jQuery(".velib-station-bike-available").attr("data-point");
-      console.log(numberOfPoint);
       //I multiplied by 0.65 (ul = 650px | 1 pixel = 0.65point)
       var numberOfPointPx = numberOfPoint * 0.65;
 
       TweenMax.staggerTo(".point", 1,{
         width: numberOfPointPx
       }, 0.5);
-  
+
         this.hideLoader();
         this.setState({
           velibs: arrayVelib,
@@ -123,7 +122,6 @@ class Velib extends Component {
     return (
       <form className={`velibForm ${this.state.formClassAffix}`} onSubmit={this.handleSubmit}>
         <div className="col">
-          <span>Je cherche</span>
           <div className="radio">
             <label htmlFor="idSearchVelib">
               <input type="radio" id="idSearchVelib" name="searchType" value="bike" checked={this.state.searchType === 'bike'} onChange={this.handleChangeSearchType} />
@@ -141,7 +139,7 @@ class Velib extends Component {
           <label htmlFor="idWhere">Ou ?</label>
           <input type="text" id="idWhere" value={this.state.search} onChange={this.handleChangeSearch} placeholder="Recherche Adresse / Code Postal / Lieu" />
         </div>
-        <input type="submit" value="Rechercher" />
+        <button className="btn_search"><span>Rechercher</span></button>
       </form>
     );
   }
