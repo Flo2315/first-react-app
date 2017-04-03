@@ -55,6 +55,16 @@ class Velib extends Component {
           }
         });
 
+      //I get the value of data-point
+      var numberOfPoint = jQuery(".velib-station-bike-available").attr("data-point");
+      console.log(numberOfPoint);
+      //I multiplied by 0.65 (ul = 650px | 1 pixel = 0.65point)
+      var numberOfPointPx = numberOfPoint * 0.65;
+
+      TweenMax.staggerTo(".point", 1,{
+        width: numberOfPointPx
+      }, 0.5);
+  
         this.hideLoader();
         this.setState({
           velibs: arrayVelib,
