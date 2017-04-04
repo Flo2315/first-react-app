@@ -71,13 +71,14 @@
             flex-direction: row;
             align-items: center;
             align-content: center;
-            position: relative;
             cursor: pointer;
             span{
                 font-weight: $regular;
                 font-size: 3rem;
                 display: block;
-                margin: 0 auto;
+                position: absolute;
+                left: 0;
+                right: 0;
             }
         }
         input:checked+label:before{
