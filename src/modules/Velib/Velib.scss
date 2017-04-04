@@ -1,5 +1,31 @@
 @import "../../varGlobal";
 
+%spedoELement{
+  &:before{
+      content: '';
+      display: block;
+      width: 3vh;
+      height: 3vh;
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 50%;
+      margin: 0 auto;
+      outline: 90px solid transparent;
+      filter: url(#filter-goo-4);
+      padding: 0;
+      transform: translateY(-50%);
+      background: $secondaryColor;
+      border-radius: 50%;
+      z-index: -2;
+      transition: all .5s cubic-bezier(0.75, 0, 0.125, 1);
+  }
+  &:hover:before{
+      width: 15vh;
+      height: 15vh;
+  }
+}
+
 .container-velib{
   height: 100vh;
   width: 100vw;
@@ -8,6 +34,15 @@
   flex-direction: row;
   align-items: center;
   align-content: center;
+  h2{
+    font-size: 2rem;
+    margin: 0;
+    position: absolute;
+    top: 15vh;
+    left: 0;
+    right: 0;
+    font-weight: $regular;
+  }
   .col{
     display: flex;
     flex-direction: row;
@@ -15,75 +50,157 @@
     align-content: center;
   }
   .velibForm{
-    position: absolute;
-    top: 50%;
-    left: 0;
-    right: 0;
-    margin: 0 auto;
-    transform: translateY(-50%);
     text-align: center;
     .radio{
-        width: 50vw;
+        width: 37.5vw;
+        height: 37.5vw;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        align-content: center;
         position: relative;
         input{
             opacity: 0;
         }
         label{
-            &:before{
-                content: '';
-                display: block;
-                width: 10vh;
-                height: 10vh;
-                position: absolute;
-                left: 0;
-                right: 0;
-                top: 50%;
-                margin: 0 auto;
-                outline: 90px solid transparent;
-                filter: url(#filter-goo-4);
-                padding: 0;
-                transform: translateY(-50%);
-                background: red;
-                border-radius: 50%;
-                z-index: -2;
-                transition: all .5s cubic-bezier(0.75, 0, 0.125, 1);
-            }
-            &:hover:before{
-                width: 45vh;
-                height: 45vh;
-            }
+            @extend %spedoELement;
+            margin: 0 auto;
+            width: 37.5vw;
+            height: 37.5vw;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            align-content: center;
+            position: relative;
+            cursor: pointer;
             span{
-                font-weight: $bold;
+                font-weight: $regular;
                 font-size: 3rem;
+                display: block;
+                margin: 0 auto;
             }
         }
         input:checked+label:before{
-            width: 45vh;
-            height: 45vh;
+            width: 15vh;
+            height: 15vh;
         }
+    }
+    .search{
+      width: 25vw;
+      height: 25vw;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      align-content: center;
+      position: relative;
+      @extend %spedoELement;
+      input{
+        width: 100%;
+        border: 0;
+        padding-left: 15px;
+        line-height: 2;
+        font-size: 3rem;
+        background: transparent;
+      }
+      ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+        color: $black;
+        font-family: $primaryFont;
+        font-weight: $regular;
+        text-align: center;
+      }
+      ::-moz-placeholder { /* Firefox 19+ */
+        color: $black;
+        font-family: $primaryFont;
+        font-weight: $regular;
+        text-align: center;
+      }
+      :-ms-input-placeholder { /* IE 10+ */
+        color: $black;
+        font-family: $primaryFont;
+        font-weight: $regular;
+        text-align: center;
+      }
+      :-moz-placeholder { /* Firefox 18- */
+        color: $black;
+        font-family: $primaryFont;
+        font-weight: $regular;
+        text-align: center;
+      }
+    }
+  }
+}
+.velibForm.affix{
+  position: fixed;
+  width: 100%;
+  background-color: $white;
+  left: 0;
+  right: 0;
+  height: 100%;
+  display: flex;
+  top: 50%;
+  z-index: -1;
+  align-items: center;
+  transform: translateY(-50%);
+  opacity: 0;
+  transition: all .5s cubic-bezier(0.75, 0, 0.125, 1);
+  &.active{
+    opacity: 1;
+    z-index: 10;
+  }
+  .btn_search{
+    position: fixed;
+  }
+}
+.nb-station{
+  position: absolute;
+  top: 0;
+  width: 100%;
+  left: 0;
+  right: 0;
+}
+.close_search,
+.filter{
+  cursor: pointer;
+  display: block;
+  width: 4vh;
+  height: 4vh;
+  z-index: 30;
+  position: fixed;
+  top: 1vh;
+  right: 1vh;
+  opacity: 0;
+  transition: all .5s cubic-bezier(0.75, 0, 0.125, 1);
+  svg{
+    fill: $primaryColor;
+    width: 90%;
+    height: 90%;
+  }
+}
+
+.velibForm{
+  &.affix{
+    .close_search,
+    &+.filter{
+      opacity: 1;
+      &.hidden{
+        opacity: 0;
+      }
     }
   }
 }
 
-.velibForm.affix,
-.nb-station{
-    position: fixed;
-    width: 100%;
-    left: 0;
-    right: 0;
-    top: 0;
-}
-
 .btn_search{
     background-color: $primaryColor;
-    max-width: 15vw;
     width: 100%;
-    margin: 1vw auto;
     line-height: 3;
     border: 2px solid $primaryColor;
     transition: all .5s cubic-bezier(0.75, 0, 0.125, 1);
     cursor: pointer;
     outline: none;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
     &:focus{
         outline: none;
     }
@@ -106,8 +223,8 @@
   display: flex;
   flex-flow: row wrap;
   justify-content: space-around;
-  height: 90vh;
-  margin-top: 10vh;
+  height: 98vh;
+  margin-top: 2vh;
   overflow-y: scroll;
 }
 
@@ -129,6 +246,7 @@
 .loader.show{
   opacity: 1;
   visibility: visible;
+  z-index: 40;
 }
 
 .spinner {
@@ -185,5 +303,60 @@
   }  20% {
     transform: scaleY(1.0);
     -webkit-transform: scaleY(1.0);
+  }
+}
+
+//roll
+
+.roll{
+  .button_bg {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 50%;
+    margin: 0 auto;
+    outline: 90px solid transparent;
+    filter: url(#filter-goo-4);
+    padding: 0;
+    transform: translateY(-50%);
+    background: none;
+    z-index: -2;
+  }
+  .blob{
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      margin: auto;
+      width: 1px;
+      height: 1px;
+      border-radius: 50%;
+      opacity: 0.5;
+      background: $secondaryColor;
+      z-index: -1;
+      pointer-events: none;
+      transition: all 0.1s ease-out;
+      &:first-child{
+        opacity: .9;
+      }
+  }
+  &:hover{
+    .button_bg{
+      width: 15vh;
+      height: 15vh;
+      .blob{
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+  input:checked+label+.button_bg{
+    width: 15vh;
+    height: 15vh;
+    .blob{
+      width: 100%;
+      height: 100%;
+    }
   }
 }

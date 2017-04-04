@@ -25,7 +25,6 @@ class Homepage extends Component {
                 <span className="blob" style={{transform:' matrix(1, 0, 0, 1, 0, 0)'}}></span>
                 <span className="blob" style={{transform:' matrix(1, 0, 0, 1, 0, 0)'}}></span>
                 <span className="blob" style={{transform:' matrix(1, 0, 0, 1, 0, 0)'}}></span>
-                <span className="blob" style={{transform:' matrix(1, 0, 0, 1, 0, 0)'}}></span>
             </span>
           </Link>
         </div>
@@ -35,7 +34,6 @@ class Homepage extends Component {
               <span className="title">Autolib</span>
             </span>
             <span className="button_bg">
-                <span className="blob" style={{transform:' matrix(1, 0, 0, 1, 0, 0)'}}></span>
                 <span className="blob" style={{transform:' matrix(1, 0, 0, 1, 0, 0)'}}></span>
                 <span className="blob" style={{transform:' matrix(1, 0, 0, 1, 0, 0)'}}></span>
                 <span className="blob" style={{transform:' matrix(1, 0, 0, 1, 0, 0)'}}></span>

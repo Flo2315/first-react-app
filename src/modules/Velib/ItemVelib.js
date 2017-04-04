@@ -52,6 +52,7 @@ class ItemVelib extends Component {
               :
               <span>&nbsp;</span>
             }
+            <h3>{details.available_bikes}</h3>
             <div className="velib-station-footer">
               <div className="velib-station-update">
                 <span>Mise à jour le {Moment(details.last_update).format('DD/MM/YYYY à HH:mm:ss')}</span>

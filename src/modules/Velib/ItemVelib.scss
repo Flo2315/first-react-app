@@ -1,16 +1,17 @@
 @import "../../varGlobal";
 
 .velib-station{
-  width: 20vw;
-  height: 20vw;
-  margin: 1%;
+  width: 24vw;
+  height: 24vw;
+  margin: 0.5vw;
   display: flex;
   flex-direction: column;
-  background-color: $white;
   border-radius: 50%;
   position: relative;
 }
-
+h3{
+  color: $green;
+}
 .velib-station-content{
   position: absolute;
   display: block;
@@ -65,7 +66,7 @@ svg {
 }
 
 .max_point{
-  stroke: tomato;
+  stroke: $secondaryColor;
 }
 
 $width: 285/100;
